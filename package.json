@@ -5,11 +5,13 @@
   "author": "Alersandr Borkov <sbor767@yandex.ru>",
   "license": "MIT",
   "scripts": {
-    "build": "node_modules/.bin/webpack"
+    "build": "node_modules/.bin/webpack",
+    "start": "node_modules/.bin/webpack-dev-server"
   },
   "dependencies": {
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "webpack": "3.5.4"
+    "webpack": "3.5.4",
+    "webpack-dev-server": "^3.1.1"
   }
 }
