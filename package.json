@@ -1,0 +1,12 @@
+{
+  "name": "chatastrophe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Alersandr Borkov <sbor767@yandex.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "webpack": "3.5.4"
+  }
+}
