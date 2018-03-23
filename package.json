@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Alersandr Borkov <sbor767@yandex.ru>",
   "license": "MIT",
+  "scripts": {
+    "build": "node_modules/.bin/webpack"
+  },
   "dependencies": {
     "react": "15.6.1",
     "react-dom": "15.6.1",
