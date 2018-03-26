@@ -9715,13 +9715,13 @@ module.exports = getHostComponentFromComposite;
 /* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(82)
-var ReactDOM = __webpack_require__(98)
+"use strict";
 
-ReactDOM.render(
-    React.createElement('h1', null, 'Hello from react!'),
-    document.getElementById('root')
-)
+
+var React = __webpack_require__(82);
+var ReactDOM = __webpack_require__(98);
+
+ReactDOM.render(React.createElement('h1', null, 'Hello from react!ddadad234'), document.getElementById('root'));
 
 /***/ }),
 /* 82 */
