@@ -1,5 +1,6 @@
 let webpack = require('webpack')
 let HtmlWebpackPlugin = require('html-webpack-plugin')
+let ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
   entry: __dirname + '/src/index.js',
@@ -28,6 +29,13 @@ module.exports = {
           { loader: "style-loader" },
           { loader: "css-loader" }
         ]
+      },
+      {
+        exclude: [/\.html$/, /\.(js|jsx)$/, /\.css$/, /\.json$/],
+        loader: 'file-loader',
+        options: {
+          name: 'static/media/[name].[ext]'
+        }
       }
     ]
   },
@@ -62,6 +70,9 @@ module.exports = {
         comments: false
       },
       sourceMap: true
+    }),
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json'
     })
   ]
 }
