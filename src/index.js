@@ -6,3 +6,14 @@ ReactDOM.render(
     <App />,
     document.getElementById('root')
 )
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    // @TODO Why need NextApp ??
+    const NextApp = require('./App').default
+    ReactDOM.render(
+      <App />,
+      document.getElementById('root')
+    )
+  })
+}
