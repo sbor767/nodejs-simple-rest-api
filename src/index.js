@@ -1,7 +1,8 @@
-let React = require('react')
-let ReactDOM = require('react-dom')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
 
 ReactDOM.render(
-    React.createElement('h1', null, 'Hello from react!a'),
+    <App />,
     document.getElementById('root')
 )
