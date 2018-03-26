@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import App from './App'
 
 ReactDOM.render(
-    <App />,
-    document.getElementById('root')
+  <App/>,
+  document.getElementById('root')
 )
 
 if (module.hot) {
@@ -12,7 +12,7 @@ if (module.hot) {
     // @TODO Why need NextApp ??
     const NextApp = require('./App').default
     ReactDOM.render(
-      <App />,
+      <App/>,
       document.getElementById('root')
     )
   })
