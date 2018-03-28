@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import App from './components/App'
 
 ReactDOM.render(
   <App/>,
@@ -8,9 +8,9 @@ ReactDOM.render(
 )
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
+  module.hot.accept('./components/App', () => {
     // @TODO Why need NextApp ??
-    const NextApp = require('./App').default
+    const NextApp = require('./components/App').default
     ReactDOM.render(
       <App/>,
       document.getElementById('root')
