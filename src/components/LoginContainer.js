@@ -2,13 +2,46 @@ import React, { Component } from 'react'
 import Header from './Header'
 
 class LoginContainer extends Component {
-  state = { email: '', password: '' }
+  state = { email: '', password: '', error: '' }
 
   handleEmailChange = (event) => this.setState({ email: event.target.value})
   handlePasswordChange = (event) => this.setState({ password: event.target.value})
   handleSubmit = (event) => {
     event.preventDefault()
+    this.setState({ error: '' })
+    if (this.state.email && this.state.password) {
+      this.login()
+    } else {
+      this.setState({ error: 'Please fill in both fields.' })
+    }
+
     console.log(this.state)
+  }
+
+  login() {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(res => console.log(res))
+      .catch(err => {
+        if (err.code === 'auth/user-not-found') {
+          this.signup()
+        } else {
+          this.setState({ error: 'Error loggin in. Something wrong.' })
+        }
+      })
+  }
+
+  signup() {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(res => console.log('Created user: ', res))
+      .catch(err => {
+        console.log('Error: ', err)
+        // this.setState({ error: 'Error signing up. ' . err.message })
+        this.setState({ error: 'Error signing up. ' })
+      })
   }
 
   render = () => (
@@ -28,6 +61,7 @@ class LoginContainer extends Component {
           value={this.state.password}
           placeholder='Your password'
         />
+        <p className="error">{this.state.error}</p>
         <button className='red light' type='submit'>Login</button>
       </form>
 
