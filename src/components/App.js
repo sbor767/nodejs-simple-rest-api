@@ -4,7 +4,6 @@ import LoginContainer from './LoginContainer'
 import ChatContainer from './ChatContainer'
 import './app.css'
 
-// const App = () => <h1>Hello from React!!5</h1>
 class App extends Component {
   state = { user: null }
 
@@ -13,6 +12,7 @@ class App extends Component {
       if (user) {
         this.setState({ user })
       } else {
+        // This fired in any case - also when the first entry have place.
         this.props.history.push('/login')
       }
     })
