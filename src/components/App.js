@@ -6,7 +6,7 @@ import UserContainer from './UserContainer'
 import './app.css'
 
 class App extends Component {
-  state = { user: null }
+  state = { user: null, messages: [] }
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged( user => {
@@ -17,6 +17,18 @@ class App extends Component {
         this.props.history.push('/login')
       }
     })
+    firebase.database().ref('/messages').on('value', snapshot => {
+      this.onMessage(snapshot)
+    })
+  }
+
+  onMessage = snapshot => {
+    const messages = Object.keys(snapshot.val()).map(key => {
+      const msg = snapshot.val()[key]
+      msg.id = key
+      return msg
+    })
+    this.setState({ messages })
   }
 
   handleSubmitMessage = msg => {
@@ -38,7 +50,12 @@ class App extends Component {
         <Route path="/login" component={LoginContainer} />
         <Route
           exact path="/"
-          render={() => <ChatContainer onSubmit={this.handleSubmitMessage} />}
+          render={() => (
+            <ChatContainer
+              onSubmit={this.handleSubmitMessage}
+              messages={this.state.messages}
+            />
+          )}
         />
         <Route path="/users/:id" component={UserContainer} />
       </div>

@@ -29,7 +29,11 @@ export default class ChatContainer extends Component {
         <button className="red" onClick={this.handleLogout}>Logout</button>
       </Header>
       <div id="message-container">
-
+        {this.props.messages.map(msg => (
+          <div key={msg.id} className="message">
+            <p>{msg.msg}</p>
+          </div>
+        ))}
       </div>
       <div id="chat-input">
         <textarea
