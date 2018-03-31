@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "chatastrophe-f0bb1"
+    "default": "chatastrophe-f0bb1",
+    "first": "chatastrophe-f0bb1"
   }
 }
