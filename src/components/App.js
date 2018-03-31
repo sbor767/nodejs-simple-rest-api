@@ -19,11 +19,27 @@ class App extends Component {
     })
   }
 
+  handleSubmitMessage = msg => {
+    const data = {
+      msg,
+      author: this.state.user.email,
+      user_id: this.state.user.uid,
+      timestamp: Date.now()
+    }
+    firebase
+      .database()
+      .ref('messages/')
+      .push(data)
+  }
+
   render() {
     return (
       <div id='container'>
         <Route path="/login" component={LoginContainer} />
-        <Route exact path="/" component={ChatContainer} />
+        <Route
+          exact path="/"
+          render={() => <ChatContainer onSubmit={this.handleSubmitMessage} />}
+        />
         <Route path="/users/:id" component={UserContainer} />
       </div>
     )
