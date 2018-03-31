@@ -23,6 +23,14 @@ export default class ChatContainer extends Component {
     }
   }
 
+  getAuthor = (msg, nextMsg) => {
+    if (!nextMsg || nextMsg.author !== msg.author) return (
+      <p className="author">
+        <Link to={`/users/${msg.user_id}`}>{msg.author}</Link>
+      </p>
+    )
+  }
+
   render() {return (
     /*<div id="ChatContainer" className="inner-container">*/
     <div id="ChatContainer" className="">
@@ -56,12 +64,4 @@ export default class ChatContainer extends Component {
       </div>
     </div>
   )}
-
-  getAuthor = (msg, nextMsg) => {
-    if (!nextMsg || nextMsg.author !== msg.author) return (
-      <p className="author">
-        <Link to={`/users/${msg.user_id}`}>{msg.author}</Link>
-      </p>
-    )
-  }
 }
