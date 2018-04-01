@@ -20,6 +20,11 @@ class LoginContainer extends Component {
     console.log(this.state)
   }
 
+  onLogin() {
+    // Redirect to '/'.
+    this.props.history.push('/')
+  }
+
   login() {
     firebase
       .auth()
@@ -34,16 +39,14 @@ class LoginContainer extends Component {
       })
   }
 
-  onLogin() {
-    // Redirect to '/'.
-    this.props.history.push('/')
-  }
-
   signup() {
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(res => console.log('Created user: ', res))
+      .then(res => {
+        this.onLogin()
+        console.log('Created user: ', res)
+      })
       .catch(err => {
         console.log('Error: ', err)
         // this.setState({ error: 'Error signing up. ' . err.message })
