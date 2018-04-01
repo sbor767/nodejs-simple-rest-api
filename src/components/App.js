@@ -3,6 +3,7 @@ import { Route, withRouter } from 'react-router-dom'
 import LoginContainer from './LoginContainer'
 import ChatContainer from './ChatContainer'
 import UserContainer from './UserContainer'
+import NotificationResource from '../resources/NotificationResource'
 import './app.css'
 
 class App extends Component {
@@ -21,6 +22,8 @@ class App extends Component {
       this.onMessage(snapshot)
       if (!this.state.messagesLoaded) this.setState({ messagesLoaded: true })
     })
+
+    this.notifications = new NotificationResource(firebase.messaging())
   }
 
   onMessage = snapshot => {
