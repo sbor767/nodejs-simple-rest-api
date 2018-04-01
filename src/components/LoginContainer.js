@@ -34,7 +34,7 @@ class LoginContainer extends Component {
         if (err.code === 'auth/user-not-found') {
           this.signup()
         } else {
-          this.setState({ error: 'Error loggin in. Something wrong.' })
+          this.setState({ error: `Error loggin in: ${err.message}` })
         }
       })
   }
@@ -49,8 +49,7 @@ class LoginContainer extends Component {
       })
       .catch(err => {
         console.log('Error: ', err)
-        // this.setState({ error: 'Error signing up. ' . err.message })
-        this.setState({ error: 'Error signing up. ' })
+        this.setState({ error: `Error signing up: ${err.message}` })
       })
   }
 
