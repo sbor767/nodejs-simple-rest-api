@@ -48,28 +48,32 @@ export default class ChatContainer extends Component {
       <Header>
         <button className="red" onClick={this.handleLogout}>Logout</button>
       </Header>
-      {/* @TODO Learn more about 'ref' attribute.*/}
-      <div
-        id="message-container"
-        ref={element => {
-          this.messageContainer = element
-        }}
-      >
-        {this.props.messages.map((msg, i) => (
-          <div
-            key={msg.id}
-            className={`message ${this.props.user.email === msg.author && 'mine'}`}
-          >
-            <p>{msg.msg}</p>
-            {this.getAuthor(msg, this.props.messages[i + 1])}
-          </div>
-        ))}
-      </div>
+      {this.props.messagesLoaded ? (
+        <div
+          id="message-container"
+          ref={element => {
+            this.messageContainer = element
+          }}
+        >
+          {this.props.messages.map((msg, i) => (
+            <div
+              key={msg.id}
+              className={`message ${this.props.user.email === msg.author && 'mine'}`}
+            >
+              <p>{msg.msg}</p>
+              {this.getAuthor(msg, this.props.messages[i + 1])}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div id="loading-container">
+          <img src="/assets/icon.png" alt="logo" id="loader" />
+        </div>
+      )}
       <div id="chat-input">
         <textarea
           placeholder="Add your message..."
           onChange={this.handleInputChange}
-          // Catch 'Enter' key.
           onKeyDown={this.handleKeyDown}
           value={this.state.newMessage}
         />

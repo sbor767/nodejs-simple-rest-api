@@ -6,7 +6,7 @@ import UserContainer from './UserContainer'
 import './app.css'
 
 class App extends Component {
-  state = { user: null, messages: [] }
+  state = { user: null, messages: [], messagesLoaded: false }
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
@@ -19,6 +19,7 @@ class App extends Component {
     })
     firebase.database().ref('/messages').on('value', snapshot => {
       this.onMessage(snapshot)
+      if (!this.state.messagesLoaded) this.setState({ messagesLoaded: true })
     })
   }
 
@@ -52,6 +53,7 @@ class App extends Component {
           exact path="/"
           render={() => (
             <ChatContainer
+              messagesLoaded={this.state.messagesLoaded}
               onSubmit={this.handleSubmitMessage}
               user={this.state.user}
               messages={this.state.messages}
