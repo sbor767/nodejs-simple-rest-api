@@ -4,9 +4,11 @@ import Header from './Header'
 class LoginContainer extends Component {
   state = { email: '', password: '', error: '' }
 
-  handleEmailChange = (event) => this.setState({ email: event.target.value})
-  handlePasswordChange = (event) => this.setState({ password: event.target.value})
-  handleSubmit = (event) => {
+  handleEmailChange = event => this.setState({ email: event.target.value})
+
+  handlePasswordChange = event => this.setState({ password: event.target.value})
+
+  handleSubmit = event => {
     event.preventDefault()
     this.setState({ error: '' })
     if (this.state.email && this.state.password) {

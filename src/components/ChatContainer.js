@@ -11,21 +11,15 @@ export default class ChatContainer extends Component {
   }
 
   componentDidUpdate(previousProps) {
-    if (previousProps.messages.length !== this.props.messages.length) {
-      this.scrollToBottom()
-    }
+    if (previousProps.messages.length !== this.props.messages.length) this.scrollToBottom()
   }
 
   scrollToBottom = () => {
     const messageContainer = ReactDom.findDOMNode(this.messageContainer)
-    if (messageContainer) {
-      messageContainer.scrollTop = messageContainer.scrollHeight
-    }
+    if (messageContainer) messageContainer.scrollTop = messageContainer.scrollHeight
   }
 
-  handleLogout = () => {
-    firebase.auth().signOut()
-  }
+  handleLogout = () => firebase.auth().signOut()
 
   handleInputChange = e => this.setState({ newMessage: e.target.value })
 

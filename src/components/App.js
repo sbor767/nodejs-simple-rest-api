@@ -9,7 +9,7 @@ class App extends Component {
   state = { user: null, messages: [] }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged( user => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user })
       } else {
