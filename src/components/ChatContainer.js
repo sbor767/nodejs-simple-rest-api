@@ -48,6 +48,7 @@ export default class ChatContainer extends Component {
       <Header>
         <button className="red" onClick={this.handleLogout}>Logout</button>
       </Header>
+      {/* @TODO Learn more about 'ref' attribute.*/}
       <div
         id="message-container"
         ref={element => {
