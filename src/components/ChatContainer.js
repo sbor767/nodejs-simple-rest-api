@@ -1,9 +1,27 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import ReactDom from 'react-dom'
 import Header from './Header'
 
 export default class ChatContainer extends Component {
   state = { newMessage: '' }
+
+  componentDidMount() {
+    this.scrollToBottom()
+  }
+
+  componentDidUpdate(previousProps) {
+    if (previousProps.messages.length !== this.props.messages.length) {
+      this.scrollToBottom()
+    }
+  }
+
+  scrollToBottom = () => {
+    const messageContainer = ReactDom.findDOMNode(this.messageContainer)
+    if (messageContainer) {
+      messageContainer.scrollTop = messageContainer.scrollHeight
+    }
+  }
 
   handleLogout = () => {
     firebase.auth().signOut()
@@ -32,12 +50,17 @@ export default class ChatContainer extends Component {
   }
 
   render() {return (
-    /*<div id="ChatContainer" className="inner-container">*/
+    //<div id="ChatContainer" className="inner-container">
     <div id="ChatContainer" className="">
       <Header>
         <button className="red" onClick={this.handleLogout}>Logout</button>
       </Header>
-      <div id="message-container">
+      <div
+        id="message-container"
+        ref={element => {
+          this.messageContainer = element
+        }}
+      >
         {this.props.messages.map((msg, i) => (
           <div
             key={msg.id}
