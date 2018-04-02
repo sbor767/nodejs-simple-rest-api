@@ -10,20 +10,25 @@ class App extends Component {
   state = { user: null, messages: [], messagesLoaded: false }
 
   componentDidMount() {
+    this.notifications = new NotificationResource(
+      firebase.messaging(),
+      firebase.database()
+    )
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user })
+        // this.listenForMessages()
+        this.notifications.changeUser(user)
       } else {
         // This fired in any case - also when the first entry have place.
         this.props.history.push('/login')
       }
     })
+
     firebase.database().ref('/messages').on('value', snapshot => {
       this.onMessage(snapshot)
       if (!this.state.messagesLoaded) this.setState({ messagesLoaded: true })
     })
-
-    this.notifications = new NotificationResource(firebase.messaging())
   }
 
   onMessage = snapshot => {
