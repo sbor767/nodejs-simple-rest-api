@@ -3,4 +3,4 @@ node_modules
 yarn-error.log
 build/
 /public/secrets.js
-/functions/
+functions/node_modules
