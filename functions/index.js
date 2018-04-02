@@ -11,7 +11,7 @@ const admin = require('firebase-admin')
 admin.initializeApp(functions.config().firebase)
 
 exports.sendNotifications = functions.database
-  .ref('messages/{messageId}')
+  .ref('/messages/{messageId}')
   .onWrite(event => {
     const snapshot = event.data
     if (snapshot.previous.val()) return
