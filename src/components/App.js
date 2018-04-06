@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
-import LoginContainer from './LoginContainer'
-import ChatContainer from './ChatContainer'
-import UserContainer from './UserContainer'
+import AsyncComponent from './AsyncComponent'
+// import LoginContainer from './LoginContainer'
+// import ChatContainer from './ChatContainer'
+// import UserContainer from './UserContainer'
 import NotificationResource from '../resources/NotificationResource'
 import './app.css'
+
+const loadLogin = () => import('./LoginContainer').then(module => module.default)
+const loadChat = () => import('./ChatContainer').then(module => module.default)
+const loadUser = () => import('./UserContainer').then(module => module.default)
+
+const LoginContainer = AsyncComponent(loadLogin)
+const UserContainer = AsyncComponent(loadUser)
+const ChatContainer = AsyncComponent(loadChat)
 
 class App extends Component {
   state = { user: null, messages: [], messagesLoaded: false }
@@ -31,6 +40,9 @@ class App extends Component {
       if (!this.state.messagesLoaded) this.setState({ messagesLoaded: true })
     })
     this.listenForInstallBanner()
+    loadChat()
+    loadLogin()
+    loadUser()
   }
 
   listenForInstallBanner = () => {
