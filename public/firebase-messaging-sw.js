@@ -37,7 +37,12 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
+    caches.match(event.request).then(response => {
+      if (response) return response
+      // Next found in https://github.com/sveltejs/sapper-template/issues/34
+      if (event.request.cache === 'only-if-cache') event.request.mode = 'same-origin'
+      return fetch(event.request)
+    })
   )
 })
 
