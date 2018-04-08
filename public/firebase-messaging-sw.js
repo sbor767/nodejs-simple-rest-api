@@ -40,7 +40,7 @@ self.addEventListener('fetch', event => {
     caches.match(event.request).then(response => {
       if (response) return response
       // Next found in https://github.com/sveltejs/sapper-template/issues/34
-      if (event.request.cache === 'only-if-cache') event.request.mode = 'same-origin'
+      if (event.request.cache === 'only-if-cached') event.request.mode = 'same-origin'
       return fetch(event.request)
     })
   )
