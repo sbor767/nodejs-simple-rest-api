@@ -22,7 +22,7 @@ self.addEventListener('install', event => {
           .then(response => {
             if (response.ok) {
               response.json().then(manifest => {
-                const urls = object.keys(manifest).map(key => manifest[key])
+                const urls = Object.keys(manifest).map(key => manifest[key])
                 // Add urls for the our index and icon.
                 urls.push('/')
                 urls.push('/assets/icon.png')
