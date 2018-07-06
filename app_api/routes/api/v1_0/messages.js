@@ -1,27 +1,16 @@
 const express = require('express'),
       router = express.Router(),
       ctrlMessages = require('./controllers/messages')
+      reset = require('./models/reset')
 
 // Middleware specific to api router
-/*
-router.use(function(req, res, next) {
-  // console.log('API middleware.')
-  console.log('API middleware.', req.method, req.url)
-  // allows api/v2 endpoints to pass without token, otherwise requires valid token
-  let data = req.query || ''
-  // @TODO Do some middleware.
-
-  if (data.token !== process.env.API_KEY) {
-    let message = 'Not authorized to access this endpoint without valid credentials.'
-    console.log(message);
-    res.json({
-      response: message
-    });
-  }
-
+// Wait for the defined 'is over' time and resets db and states.
+// This need to avoid store the spammed messages.
+router.use((req, res, next) => {
+  console.log('API reset middleware.')
+  reset.init(req, res, next)
   next();
 });
-*/
 
 // Messages.
 router.post('/messages', ctrlMessages.create)
