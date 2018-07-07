@@ -1,3 +1,4 @@
+const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
 // Load .env letiables
@@ -10,6 +11,12 @@ const express = require('express'),
     connection = require('express-myconnection'),
     mysql = require('mysql'),
     expressValidator = require('express-validator')
+
+//don't show the log when it is test
+if(process.env.NODE_ENV !== 'test') {
+  //use morgan to log at command line
+  app.use(morgan('combined')); //'combined' outputs the Apache style LOGs
+}
 
 // Protect api with the CORS.
 const cors = require('cors')
@@ -42,3 +49,5 @@ app.use(function(req, res, next) {
 // Start server
 app.listen(port)
 console.log(`Starting forum api server on port: ${port}`)
+
+module.exports = app
