@@ -72,14 +72,12 @@ module.exports.getOneBody = (req, res, next) => {
 }
 
 module.exports.deleteOne = (req, res, next) => {
-  // res.status(200)
-  // res.json({"status": "success"})
-
   let messageId = req.params.message_id
   req.getConnection((err,conn) => {
     if (err) return next("Cannot connect to MySQL DB.")
 
-    let query = conn.query('DELETE FROM message WHERE id=?', [messageId], (err, rows) => {
+    // let query = conn.query('DELETE FROM message WHERE id=?', [messageId], (err, rows) => {
+    let query = conn.query('DELETE FROM message WHERE id=?', messageId, (err, rows) => {
       if (err) {
         return next("Mysql error, check your query")
       }
