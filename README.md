@@ -3,13 +3,17 @@
 This rep reflect next job task:
 
 Test task for the JS developer
+
  Design and implement simple web forum. Server side should be developed in node.js and should provide REST API. Forum have a list of messages. Each message have ID, header and body. Messages should be stored in DB. The following REST methods should be implemented:
+
  1. Create new message
  2. Get list of messages (as list of pairs <ID, header>))
  3. Get message body (by ID)
  4. Delete message (by ID)
  5. Edit message (by ID)
+
  Code should have unit tests and comments.
+
  Optionally frontend should be developed. Also short doc with description about to install and run should be provided.
 
 
@@ -52,7 +56,6 @@ Certain environment variables are required to run the server and access data. Th
 In order to run the server locally, you must follow these steps:
 
 - Clone the repository
-- Switch to the branch `180705-forum-test-w-db`
 - Go to the `app_api` folder. 
 - Run `yarn install` once you've installed any global dependencies above.
 - Add any environment variables above.
