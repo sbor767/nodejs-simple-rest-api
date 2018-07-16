@@ -25,7 +25,7 @@ class App extends Component {
           let headers = []
           json.map((current) => {headers[current.id] = current.header})
           this.setState({
-            headers: headers,
+            headers,
             headersLoaded: true
           })
         }
@@ -65,9 +65,9 @@ class App extends Component {
           exact path="/"
           render={() => (
             <ForumContainer
-              messagesLoaded={this.state.headersLoaded}
+              headersLoaded={this.state.headersLoaded}
               onSubmit={this.handleSubmitMessage}
-              messages={this.state.headers}
+              headers={this.state.headers}
             />
           )}
         />
@@ -75,8 +75,8 @@ class App extends Component {
           path="/messages/:id"
           render={({ history, match }) => (
             <MessageContainer
-              messages={this.state.headers}
-              messagesLoaded={this.state.headersLoaded}
+              headers={this.state.headers}
+              headersLoaded={this.state.headersLoaded}
               messageId={match.params.id}
             />
           )}
