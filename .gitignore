@@ -2,5 +2,3 @@ node_modules
 .idea
 yarn-error.log
 build/
-/public/secrets.js
-functions/node_modules/

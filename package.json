@@ -1,15 +1,12 @@
 {
-  "name": "chatastrophe",
+  "name": "forum-test-job",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Alersandr Borkov <sbor767@yandex.ru>",
   "license": "MIT",
   "scripts": {
     "build": "node scripts/copy_assets.js && node_modules/.bin/webpack --config webpack.config.prod.js",
-    "start": "node_modules/.bin/webpack-dev-server",
-    "deploy-npm-bad-testing": "npm run build && firebase deploy",
-    "deploy-w-assess": "yarn build && node scripts/assess.js && firebase deploy",
-    "deploy": "yarn build && firebase deploy"
+    "start": "node_modules/.bin/webpack-dev-server"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
@@ -31,8 +28,6 @@
     "webpack-manifest-plugin": "^2.0.0-rc.2"
   },
   "devDependencies": {
-    "babel-preset-stage-2": "^6.24.1",
-    "lighthouse": "^2.9.4",
-    "serve": "^6.5.4"
+    "babel-preset-stage-2": "^6.24.1"
   }
 }

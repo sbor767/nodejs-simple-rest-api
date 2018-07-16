@@ -37,7 +37,19 @@ button.red:focus {
   background-color: #7b1c19;
 }
 
-#ChatContainer #chat-input {
+button.blue {
+  background-color: #77A0B8;
+  color: white;
+  padding: 7px 10px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+button.blue:focus {
+  background-color: #97CCEA;
+}
+
+#ForumContainer #forum-input {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -46,7 +58,7 @@ button.red:focus {
   background-color: white;
 }
 
-#ChatContainer #chat-input textarea {
+#ForumContainer #forum-input textarea {
   width: 85%;
   border-radius: 10px;
   border: none;
@@ -55,24 +67,24 @@ button.red:focus {
   float: left;
 }
 
-#ChatContainer #chat-input button {
+#ForumContainer #forum-input button {
   background: none;
   border: none;
   width: 15%;
   padding-top: 6px;
 }
 
-#ChatContainer #chat-input button svg {
+#ForumContainer #forum-input button svg {
   width: 24px;
   height: 24px;
   text-align: center;
 }
 
-#ChatContainer #chat-input button:hover {
+#ForumContainer #forum-input button:hover {
   cursor: pointer;
 }
 
-#ChatContainer #chat-input button:hover svg path {
+#ForumContainer #forum-input button:hover svg path {
   fill: #A62824;
 }
 

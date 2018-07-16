@@ -1,3 +1,4 @@
+/*
 importScripts('https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/4.12.0/firebase-messaging.js')
 
@@ -57,3 +58,4 @@ self.addEventListener('activate', event => {
 })
 
 console.log(firebase.messaging())
+*/

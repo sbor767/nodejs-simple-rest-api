@@ -12,6 +12,8 @@ ReactDOM.render(
 
 if (module.hot) {
   module.hot.accept('./components/App', () => {
+  // module.hot.accept(['./components/App', './controllers/RstApi'], () => {
+  // module.hot.accept(['./components/App', './controllers'], () => {
     // @TODO Why need NextApp ??
     const NextApp = require('./components/App').default
     ReactDOM.render(

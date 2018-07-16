@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ReactDom from 'react-dom'
-import Header from './Header'
+import HeaderContainer from './HeaderContainer'
 
-export default class ChatContainer extends Component {
+export default class ForumContainer extends Component {
   state = { newMessage: '' }
 
   componentDidMount() {
+
     this.scrollToBottom()
   }
 
@@ -18,8 +19,6 @@ export default class ChatContainer extends Component {
     const messageContainer = ReactDom.findDOMNode(this.messageContainer)
     if (messageContainer) messageContainer.scrollTop = messageContainer.scrollHeight
   }
-
-  handleLogout = () => firebase.auth().signOut()
 
   handleInputChange = e => this.setState({ newMessage: e.target.value })
 
@@ -35,33 +34,31 @@ export default class ChatContainer extends Component {
     }
   }
 
-  getAuthor = (msg, nextMsg) => {
-    if (!nextMsg || nextMsg.author !== msg.author) return (
-      <p className="author">
-        <Link to={`/users/${msg.user_id}`}>{msg.author}</Link>
-      </p>
-    )
-  }
-
   render() {return (
-    <div id="ChatContainer" className="inner-container">
-      <Header>
-        <button className="red" onClick={this.handleLogout}>Logout</button>
-      </Header>
+    <div id="ForumContainer" className="inner-container">
+      <HeaderContainer>
+        <p>
+          @TODO Test Job specification
+        </p>
+      </HeaderContainer>
       {this.props.messagesLoaded ? (
-        <div
+        <div key='1'
           id="message-container"
           ref={element => {
             this.messageContainer = element
           }}
         >
+
           {this.props.messages.map((msg, i) => (
             <div
               key={msg.id}
-              className={`message ${this.props.user.email === msg.author && 'mine'}`}
+              className={`message`}
             >
-              <p>{msg.msg}</p>
-              {this.getAuthor(msg, this.props.messages[i + 1])}
+              <p title={`id=${msg.id}`}>{msg.header}</p>
+              <Link to={`/messages/${msg.id}`}>
+                <button className="blue">Open {msg.id}</button>
+              </Link>
+              <button className="red" onClick={this.handleLogout} title='Delete'>Delete</button>
             </div>
           ))}
         </div>
@@ -70,7 +67,7 @@ export default class ChatContainer extends Component {
           <img src="/assets/icon.png" alt="logo" id="loader" />
         </div>
       )}
-      <div id="chat-input">
+      <div id="forum-input">
         <textarea
           placeholder="Add your message..."
           onChange={this.handleInputChange}

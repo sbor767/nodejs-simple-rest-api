@@ -1,57 +1,25 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
-import AsyncComponent from './AsyncComponent'
-// import LoginContainer from './LoginContainer'
-// import ChatContainer from './ChatContainer'
-// import UserContainer from './UserContainer'
-import NotificationResource from '../resources/NotificationResource'
+import ForumContainer from './ForumContainer'
+import MessageContainer from './MessageContainer'
+// import RstApi from '../controllers/RstApi'
+// import { RstApi } from './RstApi'
+// import RstApi from './RstApi'
+const RstApi = require('./RstApi')
+
 import './app.css'
 
-const loadLogin = () => import('./LoginContainer').then(module => module.default)
-const loadChat = () => import('./ChatContainer').then(module => module.default)
-const loadUser = () => import('./UserContainer').then(module => module.default)
-
-const LoginContainer = AsyncComponent(loadLogin)
-const UserContainer = AsyncComponent(loadUser)
-const ChatContainer = AsyncComponent(loadChat)
-
 class App extends Component {
-  state = { user: null, messages: [], messagesLoaded: false }
-  deferredPrompt = null
+  state = { messages: [], messagesLoaded: false }
 
   componentDidMount() {
-    this.notifications = new NotificationResource(
-      firebase.messaging(),
-      firebase.database()
-    )
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ user })
-        // this.listenForMessages()
-        this.notifications.changeUser(user)
-      } else {
-        // This fired in any case - also when the first entry have place.
-        this.props.history.push('/login')
-      }
-    })
-
-    firebase.database().ref('/messages').on('value', snapshot => {
-      this.onMessage(snapshot)
-      if (!this.state.messagesLoaded) this.setState({ messagesLoaded: true })
-    })
-    this.listenForInstallBanner()
-    loadChat()
-    loadLogin()
-    loadUser()
-  }
-
-  listenForInstallBanner = () => {
-    window.addEventListener('beforeinstallprompt', e => {
-      console.log('beforeinstallprompt Event fired.')
-      e.preventDefault()
-      // Stash the event so it can be triggered later.
-      this.deferredPrompt = e
-    })
+    // RstApi.getListSample()
+    RstApi.getList()
+      .then(json => this.setState({
+          messages: json,
+          messagesLoaded: true
+        })
+      )
   }
 
   onMessage = snapshot => {
@@ -65,10 +33,7 @@ class App extends Component {
 
   handleSubmitMessage = msg => {
     const data = {
-      msg,
-      author: this.state.user.email,
-      user_id: this.state.user.uid,
-      timestamp: Date.now()
+      msg
     }
     firebase
       .database()
@@ -86,25 +51,23 @@ class App extends Component {
   render() {
     return (
       <div id='container'>
-        <Route path="/login" component={LoginContainer} />
         <Route
           exact path="/"
           render={() => (
-            <ChatContainer
+            <ForumContainer
               messagesLoaded={this.state.messagesLoaded}
               onSubmit={this.handleSubmitMessage}
-              user={this.state.user}
               messages={this.state.messages}
             />
           )}
         />
         <Route
-          path="/users/:id"
+          path="/messages/:id"
           render={({ history, match }) => (
-            <UserContainer
+            <MessageContainer
               messages={this.state.messages}
               messagesLoaded={this.state.messagesLoaded}
-              userID={match.params.id}
+              messageId={match.params.id}
             />
           )}
         />
