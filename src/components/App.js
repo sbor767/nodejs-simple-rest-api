@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import ForumContainer from './ForumContainer'
 import MessageContainer from './MessageContainer'
-// import RstApi from '../controllers/RstApi'
-// import { RstApi } from './RstApi'
-// import RstApi from './RstApi'
-const RstApi = require('./RstApi')
+// import RestApi from '../controllers/RstApi'
+// import { RestApi } from './RestApi'
+// import RestApi from './RestApi'
+const RestApi = require('./RestApi')
 
 import './app.css'
 
@@ -14,7 +14,7 @@ class App extends Component {
 
   componentDidMount() {
     // RstApi.getListSample()
-    RstApi.getList()
+    RestApi.getList()
 /*
       .then(json => this.setState({
           messages: json,

@@ -1,11 +1,16 @@
 module.exports.getList = () => {
   return fetch('http://forum-test-job.stripway.ru:4911/api/v1.0/messages')
-    .then(response => response.json())
+    .then(response => {
+      console.log('getList-response:', response)
+      let json = response.json()
+      console.log('getList-response-json:', json)
+      // return response.json()})
+      return json})
 }
 module.exports.getListSample = () => {
   return new Promise((resolve, reject) => {
     let result = []
-    for (let i = 1; i <= 50; i++) result[i] = {id: i, header: `Header-${i}`}
+    for (let i = 100; i <= 150; i++) result[i] = {id: i, header: `Header-${i}`}
     setTimeout(() => resolve(result), 2000)
   })
 }

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Header from './Header'
-const RstApi = require('./RstApi')
+const RestApi = require('./RestApi')
 
 export default class MessageContainer extends Component {
   state = { message: undefined, messageLoaded: false }
 
   componentDidMount() {
-    // RstApi.getOneBodySample()
+    // RestApi.getOneBodySample()
     console.log('this.props.messageId=', this.props.messageId)
-    RstApi.getOneBody(this.props.messageId)
+    RestApi.getOneBody(this.props.messageId)
       .then(str => this.setState({
           message: str,
           messageLoaded: true
