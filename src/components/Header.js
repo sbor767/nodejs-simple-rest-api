@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HeaderContainer = ({ children }) => (
+const Header = ({ children }) => (
   <div id='HeaderContainer'>
     <img src='/assets/icon.png' alt='logo' />
     <h1>Test Job "FORUM"</h1>
@@ -8,4 +8,4 @@ const HeaderContainer = ({ children }) => (
   </div>
 )
 
-export default HeaderContainer
+export default Header

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ReactDom from 'react-dom'
-import HeaderContainer from './HeaderContainer'
+import Header from './Header'
 
 export default class ForumContainer extends Component {
   state = { newMessage: '' }
@@ -36,11 +36,11 @@ export default class ForumContainer extends Component {
 
   render() {return (
     <div id="ForumContainer" className="inner-container">
-      <HeaderContainer>
+      <Header>
         <p>
           @TODO Test Job specification
         </p>
-      </HeaderContainer>
+      </Header>
       {this.props.headersLoaded ? (
         <div key='1'
           id="message-container"

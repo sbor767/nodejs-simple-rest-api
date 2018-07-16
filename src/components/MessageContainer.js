@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import HeaderContainer from './HeaderContainer'
+import Header from './Header'
 const RstApi = require('./RstApi')
 
 export default class MessageContainer extends Component {
@@ -28,12 +28,12 @@ export default class MessageContainer extends Component {
 
   render() {return(
     <div id="MessageContainer" className="inner-container">
-      <HeaderContainer>
+      <Header>
         <Link to="/">
           <button className="blue">Back To Forum</button>
         </Link>
         <button className="red">Delete</button>
-      </HeaderContainer>
+      </Header>
       {this.state.messageLoaded ? (
         <div id="message-container">
           <h2 className='message-header'>{this.getHeader(this.props.messageId)}</h2>
