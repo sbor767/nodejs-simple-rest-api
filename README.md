@@ -20,10 +20,10 @@ Test task for the JS developer
 # What are Ready?
 
 There are 2 part: 
-- frontend - placed in repository root. *NOT READY now*. 
+- frontend - placed in repository root. *NOT READY now* - in the development. 
 - and REST API backend - placed in the app_api folder
 
-At this moment are ready only API backend and frontend to be some late.
+At this moment are ready only API backend and frontend to be done some late.
 
 Backend can be tested on stage server forum-test-job.stripway.ru by next endpoints
 
