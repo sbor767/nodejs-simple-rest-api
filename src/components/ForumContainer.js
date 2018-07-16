@@ -12,12 +12,12 @@ export default class ForumContainer extends Component {
   }
 
   componentDidUpdate(previousProps) {
-    if (previousProps.messages.length !== this.props.messages.length) this.scrollToBottom()
+    if (previousProps.headers.length !== this.props.headers.length) this.scrollToBottom()
   }
 
   scrollToBottom = () => {
-    const messageContainer = ReactDom.findDOMNode(this.messageContainer)
-    if (messageContainer) messageContainer.scrollTop = messageContainer.scrollHeight
+    const headerContainer = ReactDom.findDOMNode(this.headerContainer)
+    if (headerContainer) headerContainer.scrollTop = headerContainer.scrollHeight
   }
 
   handleInputChange = e => this.setState({ newMessage: e.target.value })
@@ -41,11 +41,11 @@ export default class ForumContainer extends Component {
           @TODO Test Job specification
         </p>
       </HeaderContainer>
-      {this.props.messagesLoaded ? (
+      {this.props.headersLoaded ? (
         <div key='1'
           id="message-container"
           ref={element => {
-            this.messageContainer = element
+            this.headerContainer = element
           }}
         >
 
@@ -64,7 +64,7 @@ export default class ForumContainer extends Component {
           ))}
 */}
 
-          {this.props.messages.map((msg, i) => (
+          {this.props.headers.map((msg, i) => (
             <div
               key={i}
               className={`message`}

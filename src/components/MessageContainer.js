@@ -20,10 +20,10 @@ export default class MessageContainer extends Component {
   // getHeader = id => this.props.messages[id]
   getHeader(id) {
     console.log('id=', id)
-    console.log('messages=', this.props.messages)
-    console.log('header=', !!this.props.messages[id] ? this.props.messages[id] : '')
+    console.log('messages=', this.props.headers)
+    console.log('header=', !!this.props.headers[id] ? this.props.headers[id] : '')
     // return !!this.props.messages[id].header
-    return !!this.props.messages[id] ? this.props.messages[id] : ''
+    return !!this.props.headers[id] ? this.props.headers[id] : ''
   }
 
   render() {return(

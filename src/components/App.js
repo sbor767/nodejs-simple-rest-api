@@ -10,7 +10,7 @@ const RstApi = require('./RstApi')
 import './app.css'
 
 class App extends Component {
-  state = { messages: [], messagesLoaded: false }
+  state = { headers: [], headersLoaded: false }
 
   componentDidMount() {
     // RstApi.getListSample()
@@ -25,8 +25,8 @@ class App extends Component {
           let headers = []
           json.map((current) => {headers[current.id] = current.header})
           this.setState({
-            messages: headers,
-            messagesLoaded: true
+            headers: headers,
+            headersLoaded: true
           })
         }
       )
@@ -38,7 +38,7 @@ class App extends Component {
       msg.id = key
       return msg
     })
-    this.setState({ messages })
+    this.setState({ headers })
   }
 
   handleSubmitMessage = msg => {
@@ -65,9 +65,9 @@ class App extends Component {
           exact path="/"
           render={() => (
             <ForumContainer
-              messagesLoaded={this.state.messagesLoaded}
+              messagesLoaded={this.state.headersLoaded}
               onSubmit={this.handleSubmitMessage}
-              messages={this.state.messages}
+              messages={this.state.headers}
             />
           )}
         />
@@ -75,8 +75,8 @@ class App extends Component {
           path="/messages/:id"
           render={({ history, match }) => (
             <MessageContainer
-              messages={this.state.messages}
-              messagesLoaded={this.state.messagesLoaded}
+              messages={this.state.headers}
+              messagesLoaded={this.state.headersLoaded}
               messageId={match.params.id}
             />
           )}
