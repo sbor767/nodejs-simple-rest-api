@@ -49,6 +49,7 @@ export default class ForumContainer extends Component {
           }}
         >
 
+{/*
           {this.props.messages.map((msg, i) => (
             <div
               key={msg.id}
@@ -57,6 +58,20 @@ export default class ForumContainer extends Component {
               <p title={`id=${msg.id}`}>{msg.header}</p>
               <Link to={`/messages/${msg.id}`}>
                 <button className="blue">Open {msg.id}</button>
+              </Link>
+              <button className="red" onClick={this.handleLogout} title='Delete'>Delete</button>
+            </div>
+          ))}
+*/}
+
+          {this.props.messages.map((msg, i) => (
+            <div
+              key={i}
+              className={`message`}
+            >
+              <p title={`id=${i}`}>{msg}</p>
+              <Link to={`/messages/${i}`}>
+                <button className="blue">Open {i}</button>
               </Link>
               <button className="red" onClick={this.handleLogout} title='Delete'>Delete</button>
             </div>

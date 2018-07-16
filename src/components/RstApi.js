@@ -12,8 +12,7 @@ module.exports.getListSample = () => {
 
 module.exports.getOneBody = (id) => {
   return fetch(`http://forum-test-job.stripway.ru:4911/api/v1.0/messages/${id}`)
-    // .then(response => response.json())
-    .then(response => response)
+    .then(response => response.json())
 }
 module.exports.getOneBodySample = (id) => {
   return new Promise((resolve, reject) => {

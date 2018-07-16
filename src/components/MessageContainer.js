@@ -8,7 +8,8 @@ export default class MessageContainer extends Component {
 
   componentDidMount() {
     // RstApi.getOneBodySample()
-    RstApi.getOneBody()
+    console.log('this.props.messageId=', this.props.messageId)
+    RstApi.getOneBody(this.props.messageId)
       .then(str => this.setState({
           message: str,
           messageLoaded: true
@@ -20,9 +21,9 @@ export default class MessageContainer extends Component {
   getHeader(id) {
     console.log('id=', id)
     console.log('messages=', this.props.messages)
-    console.log('header=', !!this.props.messages[id] ? this.props.messages[id].header : '')
+    console.log('header=', !!this.props.messages[id] ? this.props.messages[id] : '')
     // return !!this.props.messages[id].header
-    return !!this.props.messages[id] ? this.props.messages[id].header : ''
+    return !!this.props.messages[id] ? this.props.messages[id] : ''
   }
 
   render() {return(

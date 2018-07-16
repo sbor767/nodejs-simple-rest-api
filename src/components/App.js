@@ -15,10 +15,20 @@ class App extends Component {
   componentDidMount() {
     // RstApi.getListSample()
     RstApi.getList()
+/*
       .then(json => this.setState({
           messages: json,
           messagesLoaded: true
         })
+*/
+      .then(json => {
+          let headers = []
+          json.map((current) => {headers[current.id] = current.header})
+          this.setState({
+            messages: headers,
+            messagesLoaded: true
+          })
+        }
       )
   }
 
