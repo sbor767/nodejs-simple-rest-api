@@ -14,8 +14,7 @@ class App extends Component {
   state = { headers: [], headersLoaded: false }
 
   componentDidMount() {
-    RestApi.getListSample()
-    // RestApi.getList()
+    RestApi.getList()
 /*
       .then(json => this.setState({
           messages: json,

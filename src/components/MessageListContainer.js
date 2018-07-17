@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDom from 'react-dom'
 
 import Header from '../presentation/Header'
+import Loading from '../presentation/Loading'
 import MessageList from '../presentation/MessageList'
 
 export default class MessageListContainer extends Component {
@@ -45,9 +46,7 @@ export default class MessageListContainer extends Component {
       {this.props.headersLoaded ? (
         <MessageList headers={this.props.headers}/>
       ) : (
-        <div id="loading-container">
-          <img src="/assets/icon.png" alt="logo" id="loader" />
-        </div>
+        <Loading />
       )}
       <div id="forum-input">
         <textarea

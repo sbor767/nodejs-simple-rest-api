@@ -1,6 +1,6 @@
 // class RstApi extends Component{
 // export default class RstApi {
-class RestApi2 {
+class RestApiToBeDelete {
 // const RstApi = () => {
 
   // lst = () => {
@@ -27,7 +27,7 @@ class RestApi2 {
   lst2() {return [5,6,7]}
 }
 
-export default RestApi2
+export default RestApiToBeDelete
 // export default RstApi.lst2
 // export { RstApi }
 // export { RstApi.lst }

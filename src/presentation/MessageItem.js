@@ -1,14 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export default function MessageItem({ header, id }) {
+export default function MessageItem({ header, messageId }) {
   return (
-        <div
-          className={`message`}
-        >
-          <p title={`id=${id}`}>{header}</p>
-          <Link to={`/messages/${id}`}>
-            <button className="blue">Open {id}</button>
+        <div className="message-item" >
+          <p title={`id=${messageId}`}>{header}</p>
+          <Link to={`/messages/${messageId}`}>
+            <button className="blue">Open {messageId}</button>
           </Link>
           <button className="red" onClick={this.handleLogout} title='Delete'>Delete</button>
         </div>

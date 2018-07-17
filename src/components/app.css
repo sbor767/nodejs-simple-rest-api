@@ -94,35 +94,31 @@ button.blue:focus {
   padding: 0 10px;
 }
 
-.message {
+.message-item {
   margin: 7px 0;
 
 }
 
-.message p {
+.message-item p {
   border-radius: 5px;
   padding: 5px;
   background-color: #eaeaea;
   display: inline-block;
 }
 
-.message.mine {
-  text-align: right;
-}
-
-.message a {
+.message-item a {
   text-decoration: none;
 }
 
-.message a:visited, .message a {
+.message-item a:visited, .message a {
   color: black;
 }
 
-.message a:hover {
+.message-item a:hover {
   color: #A62824;
 }
 
-.message p.author {
+.message-item p.author {
   background-color: white;
   font-size: .8em;
   display: block;

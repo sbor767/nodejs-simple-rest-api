@@ -10,8 +10,8 @@ export default function MessageList({ headers }) {
         this.headerContainer = element
       }}
     >
-      {headers.map((msg, i) => (
-        <MessageItem key={`item_id-${i}`} header={msg} id={i}/>
+      {headers.map((header, id) => (
+        <MessageItem key={`item_id-${id}`} header={header} messageId={id}/>
       ))}
     </div>
   )
