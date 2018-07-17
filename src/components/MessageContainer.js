@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Header from './Header'
-const RestApi = require('./RestApi')
+import Header from '../presentation/Header'
+const RestApi = require('../controllers/RestApi')
 
 export default class MessageContainer extends Component {
   state = { message: undefined, messageLoaded: false }

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
-import ForumContainer from './ForumContainer'
+import MessageListContainer from './MessageListContainer'
 import MessageContainer from './MessageContainer'
 // import RestApi from '../controllers/RstApi'
 // import { RestApi } from './RestApi'
 // import RestApi from './RestApi'
-const RestApi = require('./RestApi')
+const RestApi = require('../controllers/RestApi')
 
 import './app.css'
 
@@ -64,7 +64,7 @@ class App extends Component {
         <Route
           exact path="/"
           render={() => (
-            <ForumContainer
+            <MessageListContainer
               headersLoaded={this.state.headersLoaded}
               onSubmit={this.handleSubmitMessage}
               headers={this.state.headers}

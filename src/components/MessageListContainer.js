@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import ReactDom from 'react-dom'
-import Header from './Header'
+import { Link } from 'react-router-dom'
+import Header from '../presentation/Header'
+import MessageList from '../presentation/MessageList'
 
-export default class ForumContainer extends Component {
+export default class MessageListContainer extends Component {
   state = { newMessage: '' }
 
   componentDidMount() {
@@ -42,41 +43,7 @@ export default class ForumContainer extends Component {
         </p>
       </Header>
       {this.props.headersLoaded ? (
-        <div key='1'
-          id="message-container"
-          ref={element => {
-            this.headerContainer = element
-          }}
-        >
-
-{/*
-          {this.props.messages.map((msg, i) => (
-            <div
-              key={msg.id}
-              className={`message`}
-            >
-              <p title={`id=${msg.id}`}>{msg.header}</p>
-              <Link to={`/messages/${msg.id}`}>
-                <button className="blue">Open {msg.id}</button>
-              </Link>
-              <button className="red" onClick={this.handleLogout} title='Delete'>Delete</button>
-            </div>
-          ))}
-*/}
-
-          {this.props.headers.map((msg, i) => (
-            <div
-              key={i}
-              className={`message`}
-            >
-              <p title={`id=${i}`}>{msg}</p>
-              <Link to={`/messages/${i}`}>
-                <button className="blue">Open {i}</button>
-              </Link>
-              <button className="red" onClick={this.handleLogout} title='Delete'>Delete</button>
-            </div>
-          ))}
-        </div>
+        <MessageList headers={this.props.headers}/>
       ) : (
         <div id="loading-container">
           <img src="/assets/icon.png" alt="logo" id="loader" />
