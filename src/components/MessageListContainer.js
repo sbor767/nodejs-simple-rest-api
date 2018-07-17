@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
-import { Link } from 'react-router-dom'
+
 import Header from '../presentation/Header'
 import MessageList from '../presentation/MessageList'
 
