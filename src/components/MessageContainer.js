@@ -7,9 +7,9 @@ export default class MessageContainer extends Component {
   state = { message: undefined, messageLoaded: false }
 
   componentDidMount() {
-    // RestApi.getOneBodySample()
     console.log('this.props.messageId=', this.props.messageId)
-    RestApi.getOneBody(this.props.messageId)
+    RestApi.getOneBodySample(this.props.messageId)
+    // RestApi.getOneBody(this.props.messageId)
       .then(str => this.setState({
           message: str,
           messageLoaded: true
