@@ -3,33 +3,34 @@ import { Route, withRouter } from 'react-router-dom'
 
 import MessageListContainer from './MessageListContainer'
 import MessageContainer from './MessageContainer'
-// import RestApi from '../controllers/RstApi'
-// import { RestApi } from './RestApi'
-// import RestApi from './RestApi'
-const RestApi = require('../controllers/RestApi')
+
+const RestApi = require(`../controllers/RestApi${process.env.DEBUG_REST === 'true' ? 'Sample' : ''}`)
 
 import './app.css'
 
 class App extends Component {
-  state = { headers: [], headersLoaded: false }
+  state = { headers: [], headersLoaded: false, error: undefined }
 
   componentDidMount() {
     RestApi.getList()
-/*
-      .then(json => this.setState({
-          messages: json,
-          messagesLoaded: true
-        })
-*/
       .then(json => {
           let headers = []
           json.map((current) => {headers[current.id] = current.header})
           this.setState({
             headers,
-            headersLoaded: true
+            headersLoaded: true,
+            error: undefined
           })
         }
       )
+      .catch(error => {
+        console.log('RestApi.getList error: ', error)
+        this.setState({
+          headers: [],
+          headersLoaded: false,
+          error
+        })
+      })
   }
 
   onMessage = snapshot => {

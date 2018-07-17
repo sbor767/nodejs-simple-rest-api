@@ -1,5 +1,6 @@
-let webpack = require('webpack')
-let HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   entry: [
@@ -41,7 +42,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: __dirname + '/public/index.html'
-    })
+    }),
+    new Dotenv()
   ],
   devServer: {
     contentBase: './public',
