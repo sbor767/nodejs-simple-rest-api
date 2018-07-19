@@ -27,7 +27,8 @@ At this moment are ready only API backend and frontend to be done some late.
 
 Backend can be tested on stage server forum-test-job.stripway.ru by next endpoints
 
-1. POST to http://forum-test-job.stripway.ru:4911/api/v1.0/messages with JSON in body {"header":"some","body":"some"}.
+1. POST to http://forum-test-job.stripway.ru:4911/api/v1.0/messages with JSON in body {"header":"some","body":"some"} 
+   and "Content-type": "application/json; charset=UTF-8" in request header.
 2. GET http://forum-test-job.stripway.ru:4911/api/v1.0/messages
 3. GET http://forum-test-job.stripway.ru:4911/api/v1.0/messages/<message_id>
 4. DELETE http://forum-test-job.stripway.ru:4911/api/v1.0/messages/<message_id>
