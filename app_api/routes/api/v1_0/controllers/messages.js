@@ -7,13 +7,9 @@ const sendJSONresponse = (res, status, content) => {
 }
 
 module.exports.create = (req, res) => {
-  // res.status(200)
-  // res.json({"status": "success"})
-
   //validation
   req.assert('header','Header is required').notEmpty()
   req.assert('header','Header length must be 1..64').len(1, 64)
-  req.assert('body','Body is required').notEmpty()
 
   let errors = req.validationErrors()
   if (errors) return sendJSONresponse(res, 422, errors)
