@@ -79,7 +79,6 @@ module.exports.deleteOne = (req, res, next) => {
       }
       // If message NOT found.
       if (rows.affectedRows === 0) return sendJSONresponse(res, 416, 'Message Not found')
-      // sendJSONresponse(res, 204, rows.affectedRows)
       // 204 must return no content.
       sendJSONresponse(res, 204, '')
       setChanged()
