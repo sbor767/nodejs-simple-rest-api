@@ -6,7 +6,7 @@ import Loading from '../presentation/Loading'
 import MessageList from '../presentation/MessageList'
 
 export default class MessageListContainer extends Component {
-  state = { newMessage: '' }
+  state = { header: '', body: '' }
 
   componentDidMount() {
 
@@ -22,21 +22,24 @@ export default class MessageListContainer extends Component {
     if (headerContainer) headerContainer.scrollTop = headerContainer.scrollHeight
   }
 
-  handleInputChange = e => this.setState({ newMessage: e.target.value })
+  handleHeaderInputChange = e => this.setState({ header: e.target.value })
+  handleBodyInputChange = e => this.setState({ body: e.target.value })
 
   handleSubmit = () => {
-    this.props.onSubmit(this.state.newMessage)
-    this.setState({ newMessage: '' })
+    this.props.onSubmit( {header: this.state.header, body: this.state.body} )
+    this.setState({ header: '', body: '' })
   }
 
-  handleKeyDown = e => {
+  handleBodyKeyDown = e => {
     if (e.key === 'Enter') {
       e.preventDefault()
       this.handleSubmit()
     }
   }
 
-  render() {return (
+  render() {
+    {/*<MessageList headers={this.props.headers} onDelete={this.props.onDelete} />*/}
+    return (
     <div id="ForumContainer" className="inner-container">
       <Header>
         <p>
@@ -44,16 +47,26 @@ export default class MessageListContainer extends Component {
         </p>
       </Header>
       {this.props.headersLoaded ? (
-        <MessageList headers={this.props.headers}/>
+        <MessageList headers={this.props.headers} onDel={this.props.onDelete} />
       ) : (
         <Loading />
       )}
-      <div id="forum-input">
+      <div id="message-input">
+        <input
+          type="text"
+          name="header"
+          placeholder="Add your subject..."
+          onChange={this.handleHeaderInputChange}
+          // @TODO Implement jump to body field on 'Enter' keydown.
+          // onKeyDown={this.handleHeaderKeyDown}
+          value={this.state.header}
+        />
         <textarea
           placeholder="Add your message..."
-          onChange={this.handleInputChange}
-          onKeyDown={this.handleKeyDown}
-          value={this.state.newMessage}
+          onChange={this.handleBodyInputChange}
+          onKeyDown={this.handleBodyKeyDown}
+          // value={this.state.newMessage.body}
+          value={this.state.body}
         />
         <button onClick={this.handleSubmit}>
           <svg viewBox="0 0 24 24">

@@ -49,7 +49,7 @@ button.blue:focus {
   background-color: #97CCEA;
 }
 
-#ForumContainer #forum-input {
+#ForumContainer #message-input {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -58,7 +58,7 @@ button.blue:focus {
   background-color: white;
 }
 
-#ForumContainer #forum-input textarea {
+#ForumContainer #message-input textarea {
   width: 85%;
   border-radius: 10px;
   border: none;
@@ -67,24 +67,24 @@ button.blue:focus {
   float: left;
 }
 
-#ForumContainer #forum-input button {
+#ForumContainer #message-input button {
   background: none;
   border: none;
   width: 15%;
   padding-top: 6px;
 }
 
-#ForumContainer #forum-input button svg {
+#ForumContainer #message-input button svg {
   width: 24px;
   height: 24px;
   text-align: center;
 }
 
-#ForumContainer #forum-input button:hover {
+#ForumContainer #message-input button:hover {
   cursor: pointer;
 }
 
-#ForumContainer #forum-input button:hover svg path {
+#ForumContainer #message-input button:hover svg path {
   fill: #A62824;
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 import MessageItem from './MessageItem'
 
-export default function MessageList({ headers }) {
+export default function MessageList({ headers, onDelete }) {
   return (
     <div
       id="message-container"
@@ -10,8 +10,8 @@ export default function MessageList({ headers }) {
         this.headerContainer = element
       }}
     >
-      {headers.map((header, id) => (
-        <MessageItem key={`item_id-${id}`} header={header} messageId={id}/>
+      {headers.map(current => (
+        <MessageItem key={`item_id-${current.id}`} header={current.header} messageId={current.id} />
       ))}
     </div>
   )

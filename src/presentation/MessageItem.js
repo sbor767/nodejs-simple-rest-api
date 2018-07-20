@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export default function MessageItem({ header, messageId }) {
+export default function MessageItem({ header, messageId, onDelete }) {
   return (
         <div className="message-item" >
           <p title={`id=${messageId}`}>{header}</p>

@@ -13,16 +13,13 @@ class App extends Component {
 
   componentDidMount() {
     RestApi.getList()
-      .then(json => {
-          let headers = []
-          json.map((current) => {headers[current.id] = current.header})
-          this.setState({
-            headers,
-            headersLoaded: true,
-            error: undefined
-          })
-        }
-      )
+      .then(headers => {
+        this.setState({
+          headers,
+          headersLoaded: true,
+          error: undefined
+        })
+      })
       .catch(error => {
         console.log('RestApi.getList error: ', error)
         this.setState({
@@ -33,31 +30,52 @@ class App extends Component {
       })
   }
 
-  onMessage = snapshot => {
-    const messages = Object.keys(snapshot.val()).map(key => {
-      const msg = snapshot.val()[key]
-      msg.id = key
-      return msg
-    })
-    this.setState({ headers })
+  handleSubmitMessage = msg => {
+    RestApi.create(msg)
+      .then(newId => {
+        // console.log('handleSubmitMessage.msg=', msg)
+        // console.log('handleSubmitMessage.newId=', newId)
+        // console.log('this.state.headers=', this.state.headers)
+        let headers = [...this.state.headers]
+        headers.push({id: newId, header: msg.header})
+        // console.log('headers=', headers)
+        this.setState({
+          headers,
+          headersLoaded: true,
+          error: undefined
+        })
+      })
+      .catch(error => {
+        console.log('RestApi.create error: ', error)
+        this.setState({
+          headers: [],
+          headersLoaded: false,
+          error
+        })
+      })
   }
 
-  handleSubmitMessage = msg => {
-    const data = {
-      msg
-    }
-    firebase
-      .database()
-      .ref('messages/')
-      .push(data)
-    if (this.deferredPrompt) {
-      this.deferredPrompt.prompt()
-      this.deferredPrompt.userChoice.then(choice => {
-        console.log(choice)
+  handleDeleteMessage2 = id => {
+    RestApi.delete(id)
+      .then(deletedCount => {
+        let headers = this.state.headers.filter(element => element.id !== id)
+        // console.log('headers=', headers)
+        this.setState({
+          headers,
+          headersLoaded: true,
+          error: undefined
+        })
       })
-      this.deferredPrompt = null
-    }
+      .catch(error => {
+        console.log('RestApi.delete error: ', error)
+        this.setState({
+          headers: [],
+          headersLoaded: false,
+          error
+        })
+      })
   }
+  handleDeleteMessage = id => console.log(`Message ${id} was deleted!`)
 
   render() {
     return (
@@ -68,6 +86,7 @@ class App extends Component {
             <MessageListContainer
               headersLoaded={this.state.headersLoaded}
               onSubmit={this.handleSubmitMessage}
+              onDelete={this.handleDeleteMessage}
               headers={this.state.headers}
             />
           )}
