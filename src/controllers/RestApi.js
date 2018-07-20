@@ -47,7 +47,14 @@ function del(id) {
     method: 'DELETE'
   })
     .then(status)
-    .then(json)
+    // .then(json)
+    .then(response => {
+      if (response.status === 204) {
+        return Promise.resolve(response)
+      } else {
+        return Promise.reject(new Error(`Code=${response.status} ${response.statusText} RESPONSE=${response.json()}`))
+      }
+    })
 }
 
 module.exports.create = (message) => post(message)

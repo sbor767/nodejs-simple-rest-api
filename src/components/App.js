@@ -55,9 +55,16 @@ class App extends Component {
       })
   }
 
-  handleDeleteMessage2 = id => {
+  handleDeleteMessage = id => {
     RestApi.delete(id)
       .then(deletedCount => {
+        console.log('deletedCount=', deletedCount)
+        let aaa
+        aaa = deletedCount.text()
+        // deletedCount.text().then(v => aaa = v)
+        console.log('deletedCountJson=', aaa)
+
+        console.log(`Successfully deleted item with id=${id}.`)
         let headers = this.state.headers.filter(element => element.id !== id)
         // console.log('headers=', headers)
         this.setState({
@@ -67,6 +74,7 @@ class App extends Component {
         })
       })
       .catch(error => {
+        console.log(`Error when deleted item with id=${id}.`)
         console.log('RestApi.delete error: ', error)
         this.setState({
           headers: [],
@@ -75,7 +83,6 @@ class App extends Component {
         })
       })
   }
-  handleDeleteMessage = id => console.log(`Message ${id} was deleted!`)
 
   render() {
     return (
@@ -86,7 +93,7 @@ class App extends Component {
             <MessageListContainer
               headersLoaded={this.state.headersLoaded}
               onSubmit={this.handleSubmitMessage}
-              onDelete={this.handleDeleteMessage}
+              onDeleteItem={this.handleDeleteMessage}
               headers={this.state.headers}
             />
           )}

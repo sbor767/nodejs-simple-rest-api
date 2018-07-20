@@ -38,7 +38,12 @@ export default class MessageListContainer extends Component {
   }
 
   render() {
-    {/*<MessageList headers={this.props.headers} onDelete={this.props.onDelete} />*/}
+    const {
+      headersLoaded,
+      headers,
+      onDeleteItem
+    } = this.props
+
     return (
     <div id="ForumContainer" className="inner-container">
       <Header>
@@ -46,8 +51,8 @@ export default class MessageListContainer extends Component {
           @TODO Test Job specification
         </p>
       </Header>
-      {this.props.headersLoaded ? (
-        <MessageList headers={this.props.headers} onDel={this.props.onDelete} />
+      {headersLoaded ? (
+        <MessageList headers={headers} onDeleteItem={onDeleteItem} />
       ) : (
         <Loading />
       )}
