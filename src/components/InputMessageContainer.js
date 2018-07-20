@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 export default class InputMessageContainer extends Component {
-  state = { header: '', headerTouched: false, body: '' }
+  state = { header: '', headerTouched: false, body: '', error: undefined }
 
   handleHeaderInputChange = e => this.setState({ header: e.target.value, headerTouched: true })
   handleBodyInputChange = e => {
@@ -16,7 +16,7 @@ export default class InputMessageContainer extends Component {
     handleSubmit = () => {
     if (!this.state.header && !this.state.body) return
     this.props.onSubmit( {header: this.state.header, body: this.state.body} )
-    this.setState({ header: '', body: '' })
+    this.setState({ header: '', headerTouched: false, body: '', error: undefined })
   }
 
   handleBodyKeyDown = e => {
