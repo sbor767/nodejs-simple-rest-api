@@ -13,7 +13,8 @@ export default class InputMessageContainer extends Component {
     }
   }
 
-  handleSubmit = () => {
+    handleSubmit = () => {
+    if (!this.state.header && !this.state.body) return
     this.props.onSubmit( {header: this.state.header, body: this.state.body} )
     this.setState({ header: '', body: '' })
   }
