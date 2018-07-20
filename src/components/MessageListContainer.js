@@ -4,12 +4,11 @@ import ReactDom from 'react-dom'
 import Header from '../presentation/Header'
 import Loading from '../presentation/Loading'
 import MessageList from '../presentation/MessageList'
+import InputMessageContainer from './InputMessageContainer'
 
 export default class MessageListContainer extends Component {
-  state = { header: '', body: '' }
 
   componentDidMount() {
-
     this.scrollToBottom()
   }
 
@@ -22,25 +21,11 @@ export default class MessageListContainer extends Component {
     if (headerContainer) headerContainer.scrollTop = headerContainer.scrollHeight
   }
 
-  handleHeaderInputChange = e => this.setState({ header: e.target.value })
-  handleBodyInputChange = e => this.setState({ body: e.target.value })
-
-  handleSubmit = () => {
-    this.props.onSubmit( {header: this.state.header, body: this.state.body} )
-    this.setState({ header: '', body: '' })
-  }
-
-  handleBodyKeyDown = e => {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      this.handleSubmit()
-    }
-  }
-
   render() {
     const {
       headersLoaded,
       headers,
+      onSubmit,
       onDeleteItem
     } = this.props
 
@@ -56,29 +41,11 @@ export default class MessageListContainer extends Component {
       ) : (
         <Loading />
       )}
-      <div id="message-input">
-        <input
-          type="text"
-          name="header"
-          placeholder="Add your subject..."
-          onChange={this.handleHeaderInputChange}
-          // @TODO Implement jump to body field on 'Enter' keydown.
-          // onKeyDown={this.handleHeaderKeyDown}
-          value={this.state.header}
-        />
-        <textarea
-          placeholder="Add your message..."
-          onChange={this.handleBodyInputChange}
-          onKeyDown={this.handleBodyKeyDown}
-          // value={this.state.newMessage.body}
-          value={this.state.body}
-        />
-        <button onClick={this.handleSubmit}>
-          <svg viewBox="0 0 24 24">
-            <path fill="#424242" d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
-          </svg>
-        </button>
-      </div>
+
+      <InputMessageContainer
+        onSubmit={onSubmit}
+      />
+
     </div>
   )}
 }
