@@ -1,0 +1,43 @@
+input {
+    border: 1px solid rgba(0,0,0,.2);
+    padding: 0 5px;
+}
+
+#ForumContainer #message-input {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 5px;
+    background-color: white;
+}
+
+#ForumContainer #message-input textarea {
+    width: 85%;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid rgba(0,0,0,.2);
+    padding: 5px 8px;
+    float: left;
+}
+
+#ForumContainer #message-input button {
+    /*background: none;*/
+    border: none;
+    width: 15%;
+    padding-top: 6px;
+}
+
+#ForumContainer #message-input button svg {
+    width: 24px;
+    height: 24px;
+    text-align: center;
+}
+
+#ForumContainer #message-input button:hover {
+    cursor: pointer;
+}
+
+#ForumContainer #message-input button:hover svg path {
+    fill: #A62824;
+}

@@ -4,7 +4,7 @@ import ReactDom from 'react-dom'
 import Header from '../presentation/Header'
 import Loading from '../presentation/Loading'
 import MessageList from '../presentation/MessageList'
-import InputMessageContainer from './InputMessageContainer'
+import InputBoxContainer from './InputBoxContainer'
 
 export default class MessageListContainer extends Component {
 
@@ -26,6 +26,9 @@ export default class MessageListContainer extends Component {
       headersLoaded,
       headers,
       onSubmit,
+      onCancel,
+      editItemId,
+      onEditItem,
       onDeleteItem
     } = this.props
 
@@ -37,13 +40,21 @@ export default class MessageListContainer extends Component {
         </p>
       </Header>
       {headersLoaded ? (
-        <MessageList headers={headers} onDeleteItem={onDeleteItem} />
+        <MessageList
+          headers={headers}
+          editItemId={editItemId}
+          onEditItem={onEditItem}
+          onDeleteItem={onDeleteItem}
+        />
       ) : (
         <Loading />
       )}
 
-      <InputMessageContainer
+      <InputBoxContainer
         onSubmit={onSubmit}
+        onCancel={onCancel}
+        editItemId={editItemId}
+        headers={headers}
       />
 
     </div>

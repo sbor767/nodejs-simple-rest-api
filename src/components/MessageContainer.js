@@ -32,6 +32,7 @@ export default class MessageContainer extends Component {
     } = this.props
 
     return <Message
+      // @TODO Check this !!!
       header={!!headers[messageId] ? headers[messageId] : ''}
       isBodyLoaded={this.state.bodyLoaded}
       body={this.state.body}

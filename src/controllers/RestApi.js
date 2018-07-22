@@ -57,7 +57,19 @@ function del(id) {
     })
 }
 
+// PUT query
+function put(message, id) {
+  return fetch(REST_API_URL + id, {
+    method: 'PUT',
+    headers: {"Content-type": "application/json; charset=UTF-8"},
+    body: JSON.stringify(message)
+  })
+    .then(status)
+    .then(json)
+}
+
 module.exports.create = (message) => post(message)
 module.exports.getList = () => get(REST_API_URL)
 module.exports.getOneBody = (id) => get(REST_API_URL + id)
 module.exports.delete = (id) => del(id)
+module.exports.updateOne = (message, id) => put(message, id)
