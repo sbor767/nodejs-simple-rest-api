@@ -65,6 +65,18 @@ export default class InputBoxContainer extends Component {
     this.setState({header: '', headerTouched: false, body: '', error: undefined})
   }
 
+  handleCancelEdit = () => {
+    const { onCancel } = this.props
+    this.setState({
+      header: '',
+      headerTouched: false,
+      body: '',
+      bodyLoaded: false,
+      error: undefined
+    })
+    onCancel()
+  }
+
   handleBodyKeyDown = e => {
     if (e.key === 'Enter') {
       e.preventDefault()
@@ -100,7 +112,7 @@ export default class InputBoxContainer extends Component {
             <path fill="#424242" d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
           </svg>
         </button>
-        {!!editItemId && <button className="blue" onClick={onCancel} title='Cancel'>Cancel</button>}
+        {!!editItemId && <button className="blue" onClick={this.handleCancelEdit} title='Cancel'>Cancel</button>}
       </div>
 
     )}
