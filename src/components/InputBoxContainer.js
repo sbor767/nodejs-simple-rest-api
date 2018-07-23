@@ -87,7 +87,6 @@ export default class InputBoxContainer extends Component {
   render() {
     const {
       editItemId,
-      onCancel
     } = this.props
 
     return (
